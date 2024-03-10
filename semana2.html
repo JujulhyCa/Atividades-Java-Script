@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Array Dinâmico Preenchido com Formulário</title>
+            <!--1. Implemente um script com um array cujos valores sejam adicionados dinamicamente pelo usuário
+            utilizando-se formulário. A cada nova inserção exiba todos os dados cadastrados em ordem alfabética
+            em uma lista ordenada do html.-->
+    </head>
+    <body>   
+        
+        <h1>Atividades da 2ª Semana</h1>
+
+        <h3>Preencher Array com Formulário e ordená-lo de forma alfabética </h3>
+
+        <form id="meuFormulario">
+        <label for="valor">Digite um dado qualquer:</label>
+        <input type="text" id="valor" name="valor">
+        <button type="button" onclick="adicionarValor()">Adicionar</button>
+        </form>
+
+        <p>Valores inseridos:</p>
+        <ol id="valoresInseridos"></ol>
+
+        <script>
+            let arrayDinamico = [];
+
+            function adicionarValor() {
+                let inputValor = document.getElementById("valor");
+                let valor = inputValor.value;
+
+                // Adiciona elemento no final do array
+
+                arrayDinamico.push(valor);
+                
+                // Ordena o array alfabeticamente
+                arrayDinamico.sort();
+
+                // Limpa os campos de entrada
+                inputValor.value = "";
+
+                // Exibe os valores inseridos
+                exibirValoresInseridos();
+            }
+
+            function exibirValoresInseridos() {
+                let listaValores = document.getElementById("valoresInseridos");
+                listaValores.innerHTML = ""; // Limpa a lista antes de atualizar
+
+                arrayDinamico.forEach(function(valor) {
+                let itemLista = document.createElement("li");
+                itemLista.textContent = valor;
+                listaValores.appendChild(itemLista);
+                });
+            }
+        </script>
+
+        <a href="index.html">Voltar</a>
+                
+    </body>
+</html>
