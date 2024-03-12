@@ -1,0 +1,52 @@
+<!--2. Pesquise a utilização do método setTimeout() e implemente 
+um relógio que atualize o horário a cada segundo:
+
+O método setTimeout() em JavaScript é usado para executar uma função 
+após um certo período de tempo definido em milissegundos. Podemos usar 
+esse método para atualizar o horário do relógio a cada segundo. 
+
+Este código irá criar um relógio que é atualizado a cada segundo, exibindo o 
+horário atual no formato "HH:MM:SS". -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Relógio</title>
+    </head>
+    <body>
+
+        <h1>Relógio</h1>
+        <p id="relogio"></p>
+
+        <script>
+        // Função para atualizar o relógio
+        function atualizarRelogio() {
+            var data = new Date();
+            var horas = data.getHours();
+            var minutos = data.getMinutes();
+            var segundos = data.getSeconds();
+
+            // Adiciona um zero à esquerda para garantir dois dígitos
+            horas = (horas < 10 ? "0" : "") + horas;
+            minutos = (minutos < 10 ? "0" : "") + minutos;
+            segundos = (segundos < 10 ? "0" : "") + segundos;
+
+            // Formato de 24 horas ou 12 horas, conforme preferência
+            var formato = horas + ":" + minutos + ":" + segundos;
+
+            // Atualiza o elemento HTML com o novo horário
+            document.getElementById("relogio").innerHTML = formato;
+
+            // Chama a função novamente após 1 segundo
+            setTimeout(atualizarRelogio, 1000);
+        }
+
+        // Inicia a função para atualizar o relógio
+        atualizarRelogio();
+        </script>
+
+        <a href="index.html">Voltar</a>
+    </body>
+</html>

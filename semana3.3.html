@@ -1,0 +1,51 @@
+<!--3. Implemente um script que leia uma palavra ou frase de um 
+campo de texto e exiba em uma janela de alert se o texto é ou 
+não um palíndromo. 
+
+Um palíndromo é uma palavra, frase, número ou outra sequência de 
+caracteres que é igual quando lida da esquerda para a direita e da 
+direita para a esquerda. 
+
+Este código HTML contém um campo de texto onde você pode inserir uma 
+palavra ou frase. Ao clicar no botão "Verificar", ele chama a função 
+verificarPalindromo(). Dentro dessa função, o texto é convertido para 
+minúsculas, os espaços em branco e a pontuação são removidos e o texto 
+é invertido. Em seguida, ele verifica se o texto original é igual ao texto 
+invertido, exibindo uma janela de alerta com o resultado.-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Verificador de Palíndromo</title>
+    </head>
+    <body>
+
+        <h1>Verificador de Palíndromo</h1>
+        <label for="texto">Insira uma palavra ou frase:</label>
+        <input type="text" id="texto">
+        <button onclick="verificarPalindromo()">Verificar</button>
+
+        <script>
+            function verificarPalindromo() {
+                // Obtém o texto inserido pelo usuário
+                var texto = document.getElementById("texto").value.toLowerCase();
+
+                // Remove espaços em branco e pontuação
+                texto = texto.replace(/[\W_]/g, '');
+
+                // Inverte o texto
+                var textoInvertido = texto.split('').reverse().join('');
+
+                // Verifica se o texto é um palíndromo
+                if (texto === textoInvertido) {
+                    alert("O texto inserido é um palíndromo!");
+                } else {
+                    alert("O texto inserido NÃO é um palíndromo.");
+                }
+            }
+        </script>
+        <a href="index.html">Voltar</a>
+    </body>
+</html>
