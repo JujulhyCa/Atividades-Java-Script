@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário de Cadastro</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    #formularioWrapper {
+        width: 21cm; /* Largura de uma folha A4 */
+        height: 29.7cm; /* Altura de uma folha A4 */
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+
+        <fieldset>
+
+<h2>Formulário de Cadastro</h2>
+
+<form id="cadastroForm">
+    
+    <input type="radio" id="professorRadio" name="tipoUsuario" value="professor" onchange="mostrarCampos()" required> Aluno
+    
+    <input type="radio" id="alunoRadio" name="tipoUsuario" value="aluno" onchange="mostrarCampos()" required>Professor
+    
+    <br><br>
+    
+    <div id="nome">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome"><br><br>
+    </div>
+    
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" placeholder="digite seu e-mail aqui" required>
+    <br><br>
+    
+    <div class="nascimento">
+    <label for="dataNascimento">Data de Nascimento:</label>
+    <input type="date" id="dataNascimento" name="dataNascimento"><br><br>
+    </div>
+    <label for="telefoneFixo">Telefone Fixo:</label>
+    <input type="tel" id="telefoneFixo" name="telefoneFixo"><br><br>
+    
+    <label for="telefoneCelular">Telefone Celular:</label>
+    <input type="tel" id="telefoneCelular" name="telefoneCelular"><br><br>
+    
+    <div id="areaAtuacaoDiv" style="display:none;">
+        <label for="areaAtuacao">Área de Atuação:</label>
+        <input type="text" id="areaAtuacao" name="areaAtuacao"><br><br>
+        
+        <label for="matricula">Matrícula:</label>
+        <input type="text" id="matricula" name="matricula"><br><br>
+        
+        <label for="curriculumLattes">Curriculum Lattes:</label>
+        <textarea id="curriculumLattes" name="curriculumLattes"></textarea><br><br>
+    </div>
+    
+    <div id="cursoDiv" style="display:none;">
+        <label for="curso">Curso:</label>
+        <input type="text" id="curso" name="curso"><br><br>
+        
+        <label for="matriculaAluno">Matrícula:</label>
+        <input type="text" id="matriculaAluno" name="matriculaAluno"><br>
+    </div>
+    
+    <br>
+    
+    <button type="button" onclick="enviarFormulario()">Enviar</button>
+    <button type="button" onclick="redefinirFormulario()">Redefinir</button>
+</form>
+
+<script>
+function mostrarCampos() {
+    var tipoUsuario = document.querySelector('input[name="tipoUsuario"]:checked').value;
+
+    if (tipoUsuario === "professor") {
+        document.getElementById("areaAtuacaoDiv").style.display = "block";
+        document.getElementById("cursoDiv").style.display = "none";
+    } else if (tipoUsuario === "aluno") {
+        document.getElementById("cursoDiv").style.display = "block";
+        document.getElementById("areaAtuacaoDiv").style.display = "none";
+    }
+}
+
+function enviarFormulario() {
+    // Aqui você pode adicionar a lógica para validar os campos e enviar os dados do formulário
+    // Exemplo de validação do e-mail
+    var email = document.getElementById("email").value;
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("Por favor, insira um e-mail válido.");
+        return;
+    }
+
+    console.log("Formulário enviado!");
+}
+
+function redefinirFormulario() {
+    document.getElementById("cadastroForm").reset();
+    document.getElementById("areaAtuacaoDiv").style.display = "none";
+    document.getElementById("cursoDiv").style.display = "none";
+}
+
+</script>
+</fieldset>
+
+</body>
+</html>
