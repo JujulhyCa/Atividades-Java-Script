@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contador de Pessoas</title>
+<style>
+    .container {
+        text-align: center;
+        margin-top: 50px;
+        position: relative;
+    }
+    .counter {
+        display: inline-block;
+        margin: 0 10px;
+    }
+    .btn-group {
+        margin-top: 10px;
+    }
+    .btn {
+        margin: 0 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    .btn-reset {
+        margin-top: 10px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .btn-reset img {
+        width: 20px;
+        height: 20px;
+    }
+    .btn-green {
+        background-color: green;
+        color: white;
+    }
+    .btn-red {
+        background-color: red;
+        color: white;
+    }
+    .person-icon {
+        width: 50px;
+        height: auto;
+        margin: 10px;
+    }
+    .center {
+        text-align: center;
+    }
+    .left {
+        text-align: left;
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+    .right {
+        text-align: right;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .person-wrapper {
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div id="total" class="counter center">Total: 0</div>
+    <button class="btn-reset" onclick="resetCounters()">↻</button>
+    <div>
+        <div class="person-wrapper">
+            <img src="https://image.freepik.com/icones-gratis/busto-de-homem_318-10816.jpg" alt="Homem" class="person-icon">
+        </div>
+        <div id="homens" class="counter">Homens: 0</div>
+        <div class="btn-group">
+            <div class="left">
+                <button class="btn btn-green" onclick="addPerson('male')">+</button>
+                <button class="btn btn-red" onclick="removePerson('male')">-</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="person-wrapper">
+            <img src="https://i.pinimg.com/736x/35/06/48/350648cbc300d2adda85af1b4b2f71f4.jpg" alt="Mulher" class="person-icon">
+        </div>
+        <div id="mulheres" class="counter">Mulheres: 0</div>
+        <div class="btn-group">
+            <div class="right">
+                <button class="btn btn-green" onclick="addPerson('female')">+</button>
+                <button class="btn btn-red" onclick="removePerson('female')">-</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Criação dos contadores
+    const totalCounter = document.getElementById('total');
+    const menCounter = document.getElementById('homens');
+    const womenCounter = document.getElementById('mulheres');
+
+    // Inicialização dos contadores
+    let total = 0;
+    let men = 0;
+    let women = 0;
+
+    // Função para atualizar os contadores
+    function updateCounters() {
+        totalCounter.textContent = `Total: ${total}`;
+        menCounter.textContent = `Homens: ${men}`;
+        womenCounter.textContent = `Mulheres: ${women}`;
+    }
+
+    // Função para adicionar uma pessoa (homem ou mulher)
+    function addPerson(gender) {
+        if (gender === 'male') {
+            men++;
+        } else if (gender === 'female') {
+            women++;
+        }
+        total = men + women;
+        updateCounters();
+    }
+
+    // Função para remover uma pessoa (homem ou mulher)
+    function removePerson(gender) {
+        if (gender === 'male' && men > 0) {
+            men--;
+        } else if (gender === 'female' && women > 0) {
+            women--;
+        }
+        total = men + women;
+        updateCounters();
+    }
+
+    // Função para redefinir os contadores
+    function resetCounters() {
+        total = 0;
+        men = 0;
+        women = 0;
+        updateCounters();
+    }
+</script>
+
+</body>
+</html>
